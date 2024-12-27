@@ -44,8 +44,8 @@ Aᴍᴏᴜɴᴛ:</b> {num_codes}
 
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("♻️ Redeem Here ♻️", url="http://t.me/NehaTestBot")],
-                [InlineKeyboardButton("❕ Any Query ❕", url="https://t.me/IM_JISSHU")]
+                [InlineKeyboardButton("♻️ Redeem Here ♻️", url="https://t.me/movieprovider19_bot")],
+                [InlineKeyboardButton("❕ Any Query ❕", url="https://t.me/lucifercontact_bot")]
             ]
         )
 
@@ -80,7 +80,7 @@ async def redeem_code(client, message):
                         current_expiry = current_expiry.replace(tzinfo=pytz.utc)
 
                     if current_expiry and current_expiry > now_aware:
-                        expiry_str_in_ist = current_expiry.astimezone(pytz.timezone("Asia/Kolkata")).strftime("%d-%m-%Y\n⏱️ Expiry Time: %I:%M:%S %p")
+                        expiry_str_in_ist = current_expiry.astimezone(pytz.timezone("Asia/Karachi")).strftime("%d-%m-%Y\n⏱️ Expiry Time: %I:%M:%S %p")
                         await message.reply_text(
                             f"🚫 You already have premium access, which expires on {expiry_str_in_ist}.\nYou cannot redeem another code until your current premium expires.",
                             disable_web_page_preview=True
@@ -91,7 +91,7 @@ async def redeem_code(client, message):
                     user_data = {"id": user_id, "expiry_time": expiry_time}
                     await db.update_user(user_data)
 
-                    expiry_str_in_ist = expiry_time.astimezone(pytz.timezone("Asia/Kolkata")).strftime("%d-%m-%Y\n⏱️ Expiry Time: %I:%M:%S %p")
+                    expiry_str_in_ist = expiry_time.astimezone(pytz.timezone("Asia/Karachi")).strftime("%d-%m-%Y\n⏱️ Expiry Time: %I:%M:%S %p")
 
                     await message.reply_text(
                         f"Premium activated successfully!\n\nUser: {user.mention}\nUser ID: {user_id}\nPremium Access: <code>{time}</code>\n\nExpiry Date: {expiry_str_in_ist}",
