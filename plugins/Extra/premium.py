@@ -26,10 +26,10 @@ async def give_premium_cmd_handler(client, message):
             user_data = {"id": user_id, "expiry_time": expiry_time} 
             await db.update_user(user_data)  # Use the update_user method to update or insert user data
             await message.reply_text(f"ᴘʀᴇᴍɪᴜᴍ ᴀᴅᴅᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴛᴏ ᴛʜᴇ ᴜꜱᴇʀꜱ.\n👤 ᴜꜱᴇʀ ɴᴀᴍᴇ : {user.mention}\n⚡ ᴜꜱᴇʀ ɪᴅ : {user.id}\n⏰ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴇꜱꜱ : {time}")
-            time_zone = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+            time_zone = datetime.datetime.now(pytz.timezone("Asia/Karachi"))
             current_time = time_zone.strftime("%d-%m-%Y\n⏱️ ᴊᴏɪɴɪɴɢ ᴛɪᴍᴇ : %I:%M:%S %p")            
             expiry = expiry_time   
-            expiry_str_in_ist = expiry.astimezone(pytz.timezone("Asia/Kolkata")).strftime("%d-%m-%Y\n⏱️ ᴇxᴘɪʀʏ ᴛɪᴍᴇ : %I:%M:%S %p")  
+            expiry_str_in_ist = expiry.astimezone(pytz.timezone("Asia/Karachi")).strftime("%d-%m-%Y\n⏱️ ᴇxᴘɪʀʏ ᴛɪᴍᴇ : %I:%M:%S %p")  
             await client.send_message(
                 chat_id=user_id,
                 text=f"ᴘʀᴇᴍɪᴜᴍ ᴀᴅᴅᴇᴅ ᴛᴏ ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ ꜰᴏʀ {time} ᴇɴᴊᴏʏ 😀\n\n⏳ ᴊᴏɪɴɪɴɢ ᴅᴀᴛᴇ : {current_time}\n\n⌛️ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_str_in_ist}",                
@@ -53,8 +53,8 @@ async def check_plans_cmd(client, message):
         minutes, seconds = divmod(remainder, 60)
         formatted_remaining_time = f"{days} ᴅᴀʏꜱ, {hours} ʜᴏᴜʀꜱ, {minutes} ᴍɪɴᴜᴛᴇꜱ, {seconds} ꜱᴇᴄᴏɴᴅꜱ"
         expiry_time = remaining_time + datetime.datetime.now()
-        expiry_date = expiry_time.astimezone(pytz.timezone("Asia/Kolkata")).strftime("%d-%m-%Y")
-        expiry_time = expiry_time.astimezone(pytz.timezone("Asia/Kolkata")).strftime("%I:%M:%S %p")  # Format time in IST (12-hour format)
+        expiry_date = expiry_time.astimezone(pytz.timezone("Asia/Karachi")).strftime("%d-%m-%Y")
+        expiry_time = expiry_time.astimezone(pytz.timezone("Asia/Karachi")).strftime("%I:%M:%S %p")  # Format time in IST (12-hour format)
         await message.reply_text(f"📝 <u>ʏᴏᴜʀ ᴘʀᴇᴍɪᴜᴍ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ᴅᴇᴛᴀɪʟꜱ</u> :\n\n👤 ᴜꜱᴇʀ ɴᴀᴍᴇ : {user}\n🏷️ ᴜꜱᴇʀ ɪᴅ : <code>{user_id}</code>\n⏱️ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_date}\n⏱️ ᴇxᴘɪʀʏ ᴛɪᴍᴇ : {expiry_time}\n⏳ ʀᴇᴍᴀɪɴɪɴɢ ᴛɪᴍᴇ : {formatted_remaining_time}")
     else:
         btn = [ 
@@ -103,8 +103,8 @@ async def premium_users_info(client, message):
         data = await db.get_user(user['id'])
         if data and data.get("expiry_time"):
             expiry = data.get("expiry_time")
-            expiry_ist = expiry.astimezone(pytz.timezone("Asia/Kolkata"))
-            current_time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+            expiry_ist = expiry.astimezone(pytz.timezone("Asia/Karachi"))
+            current_time = datetime.datetime.now(pytz.timezone("Asia/Karachi"))
             
             if current_time > expiry_ist:
                 await db.remove_premium_access(user['id'])  # Remove premium access if expired
